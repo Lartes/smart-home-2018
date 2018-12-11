@@ -7,10 +7,19 @@ public class Room {
     private Collection<Door> doors;
     private String name;
 
+    public Room(Collection<Door> doors, String name) {
+        this.doors = doors;
+        this.name = name;
+    }
+
     public Room(Collection<Light> lights, Collection<Door> doors, String name) {
         this.lights = lights;
         this.doors = doors;
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Collection<Light> getLights() {
@@ -19,9 +28,5 @@ public class Room {
 
     public Collection<Door> getDoors() {
         return doors;
-    }
-
-    public String getName() {
-        return name;
     }
 }

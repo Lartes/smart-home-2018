@@ -19,9 +19,6 @@ public class SensorEvent {
 
     @Override
     public String toString() {
-        return "SensorEvent{" +
-                "type=" + type +
-                ", objectId='" + objectId + '\'' +
-                '}';
+        return "SensorEvent{" + "type=" + type + ", objectId='" + objectId + '\'' + '}';
     }
 }

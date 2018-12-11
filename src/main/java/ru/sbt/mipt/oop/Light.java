@@ -9,15 +9,15 @@ public class Light {
         this.isOn = isOn;
     }
 
-    public boolean isOn() {
-        return isOn;
-    }
-
     public String getId() {
         return id;
     }
 
     public void setOn(boolean on) {
         isOn = on;
+    }
+
+    public boolean isOn() {
+        return isOn;
     }
 }

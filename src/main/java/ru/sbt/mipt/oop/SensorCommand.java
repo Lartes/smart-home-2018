@@ -11,9 +11,6 @@ public class SensorCommand {
 
     @Override
     public String toString() {
-        return "SensorCommand{" +
-                "type=" + type +
-                ", objectId='" + objectId + '\'' +
-                '}';
+        return "SensorCommand{" + "type=" + type + ", objectId='" + objectId + '\'' + '}';
     }
 }
