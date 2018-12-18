@@ -6,7 +6,7 @@ public class Alarm {
 
     public Alarm(String password) {
         this.alarmPassword = password;
-        state = new AlarmDeactivate(this);
+        state = new AlarmStateDeactivate(this);
     }
 
     public void setState(AlarmState state) {

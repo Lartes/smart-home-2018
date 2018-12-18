@@ -1,5 +1,5 @@
 package ru.sbt.mipt.oop;
 
-public interface Executer {
+public interface Executor {
     void executeAction(Action action);
 }

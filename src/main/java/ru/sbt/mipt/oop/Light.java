@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class Light {
+public class Light implements Executor {
     private boolean isOn;
     private final String id;
 
@@ -19,5 +19,10 @@ public class Light {
 
     public boolean isOn() {
         return isOn;
+    }
+
+    @Override
+    public void executeAction(Action action) {
+        action.execute(this);
     }
 }

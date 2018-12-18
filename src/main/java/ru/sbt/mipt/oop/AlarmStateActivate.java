@@ -1,9 +1,9 @@
 package ru.sbt.mipt.oop;
 
-public class AlarmActivate implements AlarmState {
+public class AlarmStateActivate implements AlarmState {
     private final Alarm alarm;
 
-    public AlarmActivate(Alarm alarm) {
+    public AlarmStateActivate(Alarm alarm) {
         this.alarm = alarm;
     }
 
@@ -20,7 +20,7 @@ public class AlarmActivate implements AlarmState {
 
     @Override
     public void onSensorEvent(SensorEvent event) {
-        alarm.setState(new AlarmPassword(alarm));
+        alarm.setState(new AlarmStatePassword(alarm));
     }
 
     @Override
@@ -28,5 +28,7 @@ public class AlarmActivate implements AlarmState {
 
     @Override
     public void startAlarm() {
+        alarm.setState(new AlarmStateRing(alarm));
+        System.out.println("Alarm ring");
     }
 }

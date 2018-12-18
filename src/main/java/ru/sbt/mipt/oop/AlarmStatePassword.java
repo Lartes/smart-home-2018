@@ -1,9 +1,9 @@
 package ru.sbt.mipt.oop;
 
-public class AlarmPassword implements AlarmState{
+public class AlarmStatePassword implements AlarmState{
     private final Alarm alarm;
 
-    public AlarmPassword(Alarm alarm) {
+    public AlarmStatePassword(Alarm alarm) {
         this.alarm = alarm;
     }
 
@@ -25,10 +25,10 @@ public class AlarmPassword implements AlarmState{
     @Override
     public void enterPassword(String password) {
         if(alarm.checkPassword(password)) {
-            alarm.setState(new AlarmDeactivate(alarm));
+            alarm.setState(new AlarmStateDeactivate(alarm));
         }
         else {
-            alarm.setState(new AlarmRing(alarm));
+            alarm.setState(new AlarmStateRing(alarm));
         }
     }
 

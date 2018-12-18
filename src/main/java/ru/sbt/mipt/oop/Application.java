@@ -16,6 +16,11 @@ public class Application {
         EventsManager eventsManager = context.getBean(EventsManager.class);
 
         SmartHome smartHome = smartHomeLoader.loadSmartHome();
+        smartHome.setAlarm(new Alarm("112233"));
         EventsLoader.runEvents(smartHome, eventsManager);
+
+        RemoteControlRegistry remoteControlRegistry = context.getBean(RemoteControlRegistry.class);
+        GeneralRemoteControl remoteControl = context.getBean(GeneralRemoteControl.class);
+        remoteControlRegistry.registerRemoteControl(remoteControl, "123");
     }
 }

@@ -1,9 +1,9 @@
 package ru.sbt.mipt.oop;
 
-public class AlarmDeactivate implements AlarmState {
+public class AlarmStateDeactivate implements AlarmState {
     private final Alarm alarm;
 
-    public AlarmDeactivate(Alarm alarm) {
+    public AlarmStateDeactivate(Alarm alarm) {
         this.alarm = alarm;
     }
 
@@ -14,7 +14,7 @@ public class AlarmDeactivate implements AlarmState {
 
     @Override
     public void switchOn() {
-        alarm.setState(new AlarmActivate(alarm));
+        alarm.setState(new AlarmStateActivate(alarm));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ru.sbt.mipt.oop;
 
+import com.coolcompany.smarthome.events.CCSensorEvent;
 import com.coolcompany.smarthome.events.SensorEventsManager;
 
 import java.util.ArrayList;
@@ -16,14 +17,21 @@ public class EventManagerAdapter implements EventsManager {
 
     @Override
     public void runEventsCycle(SmartHome smartHome) {
-        SensorEvent event = RandomSensorEventProvider.getNextSensorEvent();
-        while (event != null) {
+        eventManager.registerEventHandler(event -> {
             System.out.println("Event: " + event);
+            SensorEvent sensorEvent = transformEvent(event);
             for (EventProcessor eventProcessor : eventProcessors) {
-                eventProcessor.processEvent(smartHome, event);
+                eventProcessor.processEvent(smartHome, sensorEvent);
             }
-            event = RandomSensorEventProvider.getNextSensorEvent();
-        }
+        });
+        eventManager.start();
+    }
+
+    private SensorEvent transformEvent(CCSensorEvent event) {
+        String id = event.getObjectId();
+        String type = event.getEventType().replace("Is", "_").toUpperCase();
+        SensorEventType sensorEventType = SensorEventType.valueOf(type);
+        return new SensorEvent(sensorEventType, id);
     }
 
     @Override

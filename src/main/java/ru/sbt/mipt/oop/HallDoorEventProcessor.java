@@ -6,16 +6,23 @@ public class HallDoorEventProcessor implements EventProcessor {
 
     @Override
     public void processEvent(SmartHome smartHome, SensorEvent event) {
-
         if (event.getType() != DOOR_CLOSED) return;
-        for (Room room : smartHome.getRooms()) {
-            for (Door door : room.getDoors()) {
-                if (door.getId().equals(event.getObjectId())) {
-                    if (room.getName().equals("hall")) {
-                        smartHome.switchOffLights();
-                    }
+        smartHome.executeAction(object -> {
+            if (object instanceof Room) {
+                Room room = (Room) object;
+                if (room.getName().equals("hall")) {
+                    // выполняем дейстие для входной двери
+                    room.executeAction(roomObject -> {
+                        if (roomObject instanceof Door) {
+                            Door door = (Door) roomObject;
+                            if (door.getId().equals(event.getObjectId())) {
+                                door.setOpen(false);
+                                smartHome.switchOffLights();
+                            }
+                        }
+                    });
                 }
             }
-        }
+        });
     }
 }

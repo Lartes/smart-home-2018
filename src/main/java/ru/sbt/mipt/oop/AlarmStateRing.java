@@ -1,9 +1,9 @@
 package ru.sbt.mipt.oop;
 
-public class AlarmRing implements AlarmState{
+public class AlarmStateRing implements AlarmState{
     private final Alarm alarm;
 
-    public AlarmRing(Alarm alarm) {
+    public AlarmStateRing(Alarm alarm) {
         this.alarm = alarm;
     }
 
@@ -19,7 +19,7 @@ public class AlarmRing implements AlarmState{
 
     @Override
     public void switchOff() {
-        alarm.setState(new AlarmDeactivate(alarm));
+        alarm.setState(new AlarmStateDeactivate(alarm));
     }
 
     @Override
@@ -29,8 +29,7 @@ public class AlarmRing implements AlarmState{
 
     @Override
     public void startAlarm() {
-        alarm.setState(new AlarmRing(alarm));
-        System.out.println("Alarm ring");
+
     }
 
     @Override
